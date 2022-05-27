@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import django_heroku
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,7 +27,7 @@ SECRET_KEY = 'django-insecure-ul^un2@maedce#win-u$2%ba#qe!gz5d1wu2ph!d5e068u^z@f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['tribune-project.herokuapp.com']
 
 
 # Application definition
@@ -77,14 +78,25 @@ WSGI_APPLICATION = 'tribune.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'tribune',
+#         'USER': 'postgres',
+#     'PASSWORD':'sct221',
+#     }
+# }
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'tribune',
-        'USER': 'postgres',
-    'PASSWORD':'sct221',
-    }
-}
+       'default': {
+           'ENGINE': 'django.db.backends.postgresql_psycopg2',
+           'NAME': 'd4dmpad4fk66ol',
+           'USER': 'gmpwaeynlrwcyg',
+           'PASSWORD': '679d87765b149f9038410ea461c2d7712e4426f494014674ba43ce42e1baba9e',
+           'HOST': 'ec2-44-196-174-238.compute-1.amazonaws.com',
+           'PORT': '5432',
+       }
+       
+   }
 
 
 # Password validation
@@ -121,9 +133,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+django_heroku.settings(locals())
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
